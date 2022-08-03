@@ -10,8 +10,9 @@ public class Graph2 : MonoBehaviour {
 	int resolution = 10;
 
     // Which function should we render
-	[SerializeField, Range(0, 2)]
-	int function;
+	[SerializeField]
+	FunctionLibrary.FunctionName function;
+
 
     // The points that we are graphing  
     Transform[] points;
