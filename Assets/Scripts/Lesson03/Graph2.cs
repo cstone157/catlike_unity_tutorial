@@ -10,7 +10,7 @@ public class Graph2 : MonoBehaviour {
 	int resolution = 10;
 
     // Which function should we render
-	[SerializeField, Range(0, 1)]
+	[SerializeField, Range(0, 2)]
 	int function;
 
     // The points that we are graphing  
@@ -36,20 +36,13 @@ public class Graph2 : MonoBehaviour {
 
     void Update () {
         float time = Time.time;
+        FunctionLibrary.Function f = FunctionLibrary.GetFunction(function);
 
         // Loop trough our points and update their positions
 		for (int i = 0; i < points.Length; i++) {
             Transform point = points[i];
 			Vector3 position = point.localPosition;
-//            position.y = FunctionLibrary.MultiWave(position.x, time);
-
-            if (function == 0) {
-				position.y = FunctionLibrary.Wave(position.x, time);
-			}
-			else {
-				position.y = FunctionLibrary.MultiWave(position.x, time);
-			}
-
+            position.y = f(position.x, time);
 			point.localPosition = position;
         }
 	}
