@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Graph2 : MonoBehaviour {
+public class Graph3 : MonoBehaviour {
 
 	[SerializeField]
 	Transform pointPrefab;
@@ -11,7 +11,7 @@ public class Graph2 : MonoBehaviour {
 
     // Which function should we render
 	[SerializeField]
-	FunctionLibrary.FunctionName function;
+	FunctionLibrary3.FunctionName function;
 
 
     // The points that we are graphing  
@@ -29,7 +29,7 @@ public class Graph2 : MonoBehaviour {
 	}
 
     void Update () {
-		FunctionLibrary.Function f = FunctionLibrary.GetFunction(function);
+		FunctionLibrary3.Function f = FunctionLibrary3.GetFunction(function);
 		float time = Time.time;
         float step = 2f / resolution;
         float v = 0.5f * step - 1f;
