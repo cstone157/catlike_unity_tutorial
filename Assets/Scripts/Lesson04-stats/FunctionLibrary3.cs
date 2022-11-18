@@ -8,8 +8,27 @@ public static class FunctionLibrary3 {
 	public enum FunctionName { Wave, MultiWave, Ripple, Sphere, Torus }
 	static Function[] functions = { Wave, MultiWave, Ripple, Sphere, Torus };
 
+   /**
+    * Convert a function name to a actual function
+	*/
 	public static Function GetFunction (FunctionName name) {
 		return functions[(int)name];
+	}
+
+   /**
+	* Loop function, for getting the next function from the function passed
+	*/
+	public static FunctionName GetNextFunctionName (FunctionName name) {
+		//if ((int)name < functions.Length - 1) {
+		//	return name + 1;
+		//}
+		//else {
+		//	return 0;
+		//}
+
+		// We want to loop back over if we exceeded the length of functions
+		return (int)name < functions.Length - 1 ? name + 1 : 0;
+		//return name + 1;
 	}
 
   /**
