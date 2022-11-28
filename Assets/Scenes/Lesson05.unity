@@ -300,13 +300,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326449298}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -5}
+  m_LocalRotation: {x: 0.2164396, y: 0, z: 0, w: 0.97629607}
+  m_LocalPosition: {x: 0, y: 1.5, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
 --- !u!114 &326449302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,6 +741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2024855757}
   - component: {fileID: 2024855756}
+  - component: {fileID: 2024855758}
   m_Layer: 0
   m_Name: Graph
   m_TagString: Untagged
@@ -755,13 +756,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024855755}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c326fcf548e388a2b82be464424c8c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointPrefab: {fileID: 5513959902861927162, guid: 4b700f57f25fb77cfb2ce13967b5fa2c, type: 3}
-  resolution: 80
+  resolution: 200
   function: 0
   transitionMode: 0
   functionDuration: 1
@@ -780,3 +781,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2024855758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024855755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebcd124521ff5e949ff314386cf4381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  computeShader: {fileID: 7200000, guid: d80bbdc62380ab3b88a34f0ec4086290, type: 3}
+  material: {fileID: 2100000, guid: 1926be9be2f489ef2bc282aec84f42a1, type: 2}
+  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  resolution: 100
+  function: 0
+  transitionMode: 0
+  functionDuration: 1
+  transitionDuration: 1

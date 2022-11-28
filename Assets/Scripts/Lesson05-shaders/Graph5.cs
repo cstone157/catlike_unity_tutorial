@@ -6,7 +6,7 @@ public class Graph5 : MonoBehaviour {
 	Transform pointPrefab;
 
     // Number of points to be created
-    [SerializeField, Range(10, 100)]
+    [SerializeField, Range(10, 200)]
 	int resolution = 10;
 
     // Which function should we render
