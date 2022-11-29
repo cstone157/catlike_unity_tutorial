@@ -91,6 +91,8 @@ public class GPUGraph5 : MonoBehaviour {
 		int groups = Mathf.CeilToInt(resolution / 8f);
 		computeShader.Dispatch(0, groups, groups, 1);
 
+		material.SetBuffer(positionsId, positionsBuffer);
+		material.SetFloat(stepId, step);
 		// Since the GPU is drawing everything, we won't know the
 		// bounds, so go ahead and track that
 		var bounds = new Bounds(Vector3.zero, Vector3.one * (2f + 2f / resolution));
