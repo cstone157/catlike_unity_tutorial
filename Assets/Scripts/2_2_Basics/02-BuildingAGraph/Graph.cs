@@ -7,7 +7,9 @@ public class Graph : MonoBehaviour {
 	Transform pointPrefab;
 
     // Number of cubes to create
-	[SerializeField]
+	//[SerializeField]
+    //[SerializeField, Range(10, 100)]
+    [SerializeField, Range(10, 100)]
 	int resolution = 10;
 
     // On the object awakening
@@ -37,15 +39,27 @@ public class Graph : MonoBehaviour {
 		}
         */
 
+        float step = 2f / resolution;
         var position = Vector3.zero;
-		var scale = Vector3.one / 5f;
-		for (int i = 0; i < 10; i++) {
-			Transform point = Instantiate(pointPrefab);
-			position.x = (i + 0.5f) / 5f - 1f;
-			//position.y = position.x;
+		//var scale = Vector3.one / 5f;
+		var scale = Vector3.one * step;
+		//for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < resolution; i++) {
+        	Transform point = Instantiate(pointPrefab);
+			//position.x = (i + 0.5f) / 5f - 1f;
+			position.x = (i + 0.5f) * step - 1f;
+            //position.y = position.x;
             position.y = position.x * position.x;
 			point.localPosition = position;
 			point.localScale = scale;
+
+            //point.SetParent(transform);
+            // When a new parent is set Unity will attempt to keep 
+            //  the object at its original world position, rotation, 
+            //  and scale. We don't need this in our case. We can 
+            //  signal this by passing false as a second argument 
+            //  to SetParent.
+            point.SetParent(transform, false);
 		}
     }
 }
