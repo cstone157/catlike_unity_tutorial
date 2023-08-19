@@ -49,8 +49,9 @@ public class Graph : MonoBehaviour {
 			//position.x = (i + 0.5f) / 5f - 1f;
 			position.x = (i + 0.5f) * step - 1f;
             //position.y = position.x;
-            position.y = position.x * position.x;
-			point.localPosition = position;
+            //position.y = position.x * position.x;
+			position.y = position.x * position.x * position.x;
+            point.localPosition = position;
 			point.localScale = scale;
 
             //point.SetParent(transform);
