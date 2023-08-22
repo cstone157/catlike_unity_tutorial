@@ -12,6 +12,9 @@ public class Graph : MonoBehaviour {
     [SerializeField, Range(10, 100)]
 	int resolution = 10;
 
+    //Transform points;
+    Transform[] points;
+
     // On the object awakening
     void Awake () {
         /*
@@ -44,13 +47,18 @@ public class Graph : MonoBehaviour {
 		//var scale = Vector3.one / 5f;
 		var scale = Vector3.one * step;
 		//for (int i = 0; i < 10; i++) {
-		for (int i = 0; i < resolution; i++) {
-        	Transform point = Instantiate(pointPrefab);
-			//position.x = (i + 0.5f) / 5f - 1f;
+        
+        points = new Transform[resolution];
+		for (int i = 0; i < points.Length; i++) {
+        	//Transform point = Instantiate(pointPrefab);
+            //points[i] = point;
+			Transform point = points[i] = Instantiate(pointPrefab);
+
+            //position.x = (i + 0.5f) / 5f - 1f;
 			position.x = (i + 0.5f) * step - 1f;
             //position.y = position.x;
             //position.y = position.x * position.x;
-			position.y = position.x * position.x * position.x;
+			//position.y = position.x * position.x * position.x;
             point.localPosition = position;
 			point.localScale = scale;
 
@@ -63,4 +71,21 @@ public class Graph : MonoBehaviour {
             point.SetParent(transform, false);
 		}
     }
+
+    void Update () {
+        float time = Time.time;
+
+		for (int i = 0; i < points.Length; i++) {
+			Transform point = points[i];
+			Vector3 position = point.localPosition;
+            
+            //position.y = position.x * position.x * position.x;
+            //position.y = Mathf.Sin(position.x);
+            //position.y = Mathf.Sin(Mathf.PI * position.x);
+            //position.y = Mathf.Sin(Mathf.PI * (position.x + Time.time));
+            position.y = Mathf.Sin(Mathf.PI * (position.x + time));
+            
+            point.localPosition = position;
+		}
+	}
 }
