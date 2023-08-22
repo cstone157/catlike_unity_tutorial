@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BuildAGraph
+namespace MathematicalSurfaces
 {
     public class Graph : MonoBehaviour {
 
