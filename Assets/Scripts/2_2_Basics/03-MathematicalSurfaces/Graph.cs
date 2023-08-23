@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using MathematicalSurfaces;
+
 namespace MathematicalSurfaces
 {
     public class Graph : MonoBehaviour {
@@ -49,7 +51,7 @@ namespace MathematicalSurfaces
                 Vector3 position = point.localPosition;
                 
                 // Generate a sine wave, based upon time
-                position.y = Mathf.Sin(Mathf.PI * (position.x + time));
+                position.y = FunctionLibrary.MultiWave(position.x, time);
 
                 point.localPosition = position;
             }
