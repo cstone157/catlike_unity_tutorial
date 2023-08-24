@@ -16,5 +16,12 @@ namespace MathematicalSurfaces
             y += 0.5f * Sin(2f * PI * (x + t));
 		    return y * (2f / 3f);
         }
+
+        // Define a ripple funtion for our library
+        public static float Ripple (float x, float t) {
+            float d = Abs(x);
+            float y = Sin(4f * PI * d);
+            return y;
+        }
     }
 }
