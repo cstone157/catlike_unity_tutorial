@@ -2,6 +2,11 @@ using UnityEngine;
 
 using MathematicalSurfaces;
 
+/**
+ * NOTE: Skipped section 3.4 - Better Visuals.
+ *      I wasn't able to find the shadow setting section, doesn't matter
+ *      so I skipped it.
+**/
 namespace MathematicalSurfaces
 {
     public class Graph : MonoBehaviour {
@@ -27,13 +32,20 @@ namespace MathematicalSurfaces
             var position = Vector3.zero;
             var scale = Vector3.one * step;
             
-            points = new Transform[resolution];
-            for (int i = 0; i < points.Length; i++) {
+            points = new Transform[resolution * resolution];
+            for (int i = 0, x = 0, z = 0; i < points.Length; i++, x++) {
+                // If the x has reached resolution, wrap around
+                if (x == resolution) {
+                    x = 0;
+                    z += 1;
+                }
+
                 // Create the transform for all of our points
                 Transform point = points[i] = Instantiate(pointPrefab);
 
                 // Assign the x position (since this never changes this is here, not in the update)
-                position.x = (i + 0.5f) * step - 1f;
+                position.x = (x + 0.5f) * step - 1f;
+                position.z = (z + 0.5f) * step - 1f;
                 point.localPosition = position;
                 point.localScale = scale;
 
@@ -56,7 +68,7 @@ namespace MathematicalSurfaces
                 Transform point = points[i];
                 Vector3 position = point.localPosition;
 
-                position.y = f(position.x, time);
+                position.y = f(position.x, position.z, time);
                 point.localPosition = position;
             }
         }
