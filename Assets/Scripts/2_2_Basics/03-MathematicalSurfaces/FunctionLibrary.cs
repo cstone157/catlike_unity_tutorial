@@ -4,6 +4,20 @@ using static UnityEngine.Mathf;
 namespace MathematicalSurfaces
 {
     public static class FunctionLibrary {
+        // Delegate is a special type that defines what kind of method something can reference
+        public delegate float Function (float x, float t);
+
+        // An enumeration of the function names
+        public enum FunctionName { Wave, MultiWave, Ripple }
+
+        // An array of functions rather than using numbers
+        static Function[] functions = { Wave, MultiWave, Ripple };
+
+        // Get the function asked for
+        public static Function GetFunction (FunctionName name) {
+            return functions[(int)name];
+        }
+
         // Define the Wave function for our library (using sine)
         public static float Wave (float x, float t) {
             return Sin(PI * (x + t));
@@ -20,8 +34,8 @@ namespace MathematicalSurfaces
         // Define a ripple funtion for our library
         public static float Ripple (float x, float t) {
             float d = Abs(x);
-            float y = Sin(4f * PI * d);
-            return y;
+            float y = Sin(PI * (4f * d - t));
+            return y / (1f + 10f * d);
         }
     }
 }

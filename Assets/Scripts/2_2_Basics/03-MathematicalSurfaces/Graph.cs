@@ -15,8 +15,8 @@ namespace MathematicalSurfaces
         int resolution = 10;
 
         // Select a function to move the points by
-        [SerializeField, Range(0, 1)]
-	    int function;
+        [SerializeField]
+	    FunctionLibrary.FunctionName function;
         
         Transform[] points;
 
@@ -48,26 +48,15 @@ namespace MathematicalSurfaces
 
         // On the object updating
         void Update () {
+            FunctionLibrary.Function f = FunctionLibrary.GetFunction(function);
+
             float time = Time.time;
 
             for (int i = 0; i < points.Length; i++) {
                 Transform point = points[i];
                 Vector3 position = point.localPosition;
-                
-                // Generate a sine wave, based upon time
-                //position.y = FunctionLibrary.MultiWave(position.x, time);
 
-                // Based upon the function asked for display it
-                if (function == 0) {
-                    position.y = FunctionLibrary.Wave(position.x, time);
-                }
-                else if (function == 1) {
-                    position.y = FunctionLibrary.MultiWave(position.x, time);
-                }
-                else {
-                    position.y = FunctionLibrary.Ripple(position.x, time);
-                }
-
+                position.y = f(position.x, time);
                 point.localPosition = position;
             }
         }
