@@ -10,10 +10,10 @@ namespace MathematicalSurfaces
 
 
         // An enumeration of the function names
-        public enum FunctionName { Wave, MultiWave, Ripple, Sphere, RotatingSphere }
+        public enum FunctionName { Wave, MultiWave, Ripple, Sphere, RotatingSphere, Torus }
         
         // An array of functions rather than using numbers
-        static Function[] functions = { Wave, MultiWave, Ripple, Sphere, RotatingSphere };
+        static Function[] functions = { Wave, MultiWave, Ripple, Sphere, RotatingSphere, Torus };
 
         // Get the function asked for
         public static Function GetFunction (FunctionName name) {
@@ -67,6 +67,17 @@ namespace MathematicalSurfaces
             Vector3 p;
             p.x = s * Sin(PI * u);
             p.y = r * Sin(0.5f * PI * v);
+            p.z = s * Cos(PI * u);
+            return p;
+        }
+
+        public static Vector3 Torus (float u, float v, float t) {
+            float r1 = 0.7f + 0.1f * Sin(PI * (6f * u + 0.5f * t));
+            float r2 = 0.15f + 0.05f * Sin(PI * (8f * u + 4f * v + 2f * t));
+            float s = r1 + r2 * Cos(PI * v);
+            Vector3 p;
+            p.x = s * Sin(PI * u);
+            p.y = r2 * Sin(PI * v);
             p.z = s * Cos(PI * u);
             return p;
         }
