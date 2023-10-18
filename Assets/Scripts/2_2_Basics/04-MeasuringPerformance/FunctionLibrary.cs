@@ -25,6 +25,18 @@ namespace MeasuringPerformance
             return (int)name < functions.Length - 1 ? name + 1 : 0;
         }
 
+        // Get the next function (but not the current one)
+        public static FunctionName GetRandomFunctionNameOtherThan (FunctionName name) {
+            var choice = (FunctionName)Random.Range(1, functions.Length);
+            return choice == name ? 0 : choice;
+        }
+
+        // Get a Random Function Name
+        public static FunctionName GetRandomFunctionName () {
+            var choice = (FunctionName)Random.Range(0, functions.Length);
+            return choice;
+        }
+
         // Define the Wave function for our library (using sine)
         public static Vector3 Wave (float u, float v, float t) {
             Vector3 p;
