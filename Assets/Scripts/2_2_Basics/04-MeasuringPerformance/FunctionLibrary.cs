@@ -37,6 +37,16 @@ namespace MeasuringPerformance
             return choice;
         }
 
+        // Morph from one function to another
+        public static Vector3 Morph (float u, float v, 
+            float t, Function from, Function to, float progress) {
+            //return Vector3.Lerp(from(u, v, t), to(u, v, t), progress);
+            //return Vector3.Lerp(from(u, v, t), to(u, v, t), SmoothStep(0f, 1f, progress));
+            return Vector3.LerpUnclamped(
+                from(u, v, t), to(u, v, t), SmoothStep(0f, 1f, progress)
+            );
+        }
+
         // Define the Wave function for our library (using sine)
         public static Vector3 Wave (float u, float v, float t) {
             Vector3 p;
