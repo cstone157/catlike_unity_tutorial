@@ -20,6 +20,11 @@ namespace MeasuringPerformance
             return functions[(int)name];
         }
 
+        // Get the next function name for our loop
+        public static FunctionName GetNextFunctionName (FunctionName name) {
+            return (int)name < functions.Length - 1 ? name + 1 : 0;
+        }
+
         // Define the Wave function for our library (using sine)
         public static Vector3 Wave (float u, float v, float t) {
             Vector3 p;
