@@ -9,11 +9,12 @@ using ComputeShaders;
 **/
 namespace ComputeShaders
 {
-    public class Graph : MonoBehaviour {
-
+    public class GPUGraph : MonoBehaviour {
         // The prefab of our point object
-        [SerializeField]
-        Transform pointPrefab;
+        //[SerializeField]
+        //Transform pointPrefab;
+
+        ComputeBuffer positionsBuffer;
 
         // Number of cubes to create
         [SerializeField, Range(10, 200)]
@@ -31,13 +32,14 @@ namespace ComputeShaders
         [SerializeField, Min(0f)]
         float functionDuration = 1f, transitionDuration = 1f;
 
-        Transform[] points;
+        //Transform[] points;
         float duration;
         bool transitioning;
         FunctionLibrary.FunctionName transitionFunction;
 
+        
         // On the object awakening
-        void Awake () {
+        /*void Awake () {
             // Initial all of our variables
             float step = 2f / resolution;
             var scale = Vector3.one * step;
@@ -58,6 +60,17 @@ namespace ComputeShaders
                 //  to SetParent.
                 point.SetParent(transform, false);
             }
+        }*/
+
+        /** 
+            Invoked each time the component is enabled, to ensure that the buffer survies hot reloads
+        **/
+        void OnEnable () {
+            positionsBuffer = new ComputeBuffer(resolution * resolution, 3 * 4);
+        }
+        void OnDisable () {
+            positionsBuffer.Release();
+            positionsBuffer = null;
         }
 
         // On the object updating
@@ -78,12 +91,12 @@ namespace ComputeShaders
                 PickNextFunction();
             }
 
-            if (transitioning) {
+            /*if (transitioning) {
                 UpdateFunctionTransition();
             }
             else {
                 UpdateFunction();
-            }
+            }*/
         }
 
         void PickNextFunction () {
@@ -92,7 +105,7 @@ namespace ComputeShaders
                 FunctionLibrary.GetRandomFunctionNameOtherThan(function);
         }
 
-        void UpdateFunction () {
+        /*void UpdateFunction () {
             FunctionLibrary.Function f = FunctionLibrary.GetFunction(function);
             float time = Time.time;
             float step = 2f / resolution;
@@ -106,9 +119,9 @@ namespace ComputeShaders
                 float u = (x + 0.5f) * step - 1f;
                 points[i].localPosition = f(u, v, time);
             }
-        }
+        }*/
 
-        void UpdateFunctionTransition () {
+        /*void UpdateFunctionTransition () {
             FunctionLibrary.Function
                 from = FunctionLibrary.GetFunction(transitionFunction),
                 to = FunctionLibrary.GetFunction(function);
@@ -127,6 +140,6 @@ namespace ComputeShaders
                     u, v, time, from, to, progress
                 );
             }
-        }
+        }*/
     }
 }

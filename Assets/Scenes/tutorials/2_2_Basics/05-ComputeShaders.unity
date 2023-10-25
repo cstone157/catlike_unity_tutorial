@@ -483,6 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1647369630}
   - component: {fileID: 1647369631}
+  - component: {fileID: 1647369632}
   m_Layer: 0
   m_Name: Graph
   m_TagString: Untagged
@@ -512,12 +513,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647369629}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6faad3415ecd20e66bece8528ba28949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointPrefab: {fileID: 2998500116645236166, guid: 142ba44b93ea93317b7513ecb0514980, type: 3}
+  resolution: 200
+  function: 0
+  transitionMode: 0
+  functionDuration: 5
+  transitionDuration: 3
+--- !u!114 &1647369632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647369629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd44b882c284377429fd1ca5f999b145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   resolution: 50
   function: 0
   transitionMode: 0
