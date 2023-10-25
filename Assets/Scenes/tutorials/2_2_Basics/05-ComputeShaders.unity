@@ -482,7 +482,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1647369630}
-  - component: {fileID: 1647369631}
   - component: {fileID: 1647369632}
   m_Layer: 0
   m_Name: Graph
@@ -506,24 +505,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1647369631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1647369629}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6faad3415ecd20e66bece8528ba28949, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointPrefab: {fileID: 2998500116645236166, guid: 142ba44b93ea93317b7513ecb0514980, type: 3}
-  resolution: 200
-  function: 0
-  transitionMode: 0
-  functionDuration: 5
-  transitionDuration: 3
 --- !u!114 &1647369632
 MonoBehaviour:
   m_ObjectHideFlags: 0
