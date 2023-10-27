@@ -99,7 +99,10 @@ namespace ComputeShaders
 		    int groups = Mathf.CeilToInt(resolution / 8f);
 		    computeShader.Dispatch(0, groups, groups, 1);
 
-            Graphics.DrawMeshInstancedProcedural(mesh, 0, material);
+            var bounds = new Bounds(Vector3.zero, Vector3.one * (2f + 2f / resolution));
+            Graphics.DrawMeshInstancedProcedural(
+                mesh, 0, material, bounds, positionsBuffer.count
+            );
         }
 
         // On the object updating
