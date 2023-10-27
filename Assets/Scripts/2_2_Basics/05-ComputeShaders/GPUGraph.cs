@@ -14,6 +14,21 @@ namespace ComputeShaders
         //[SerializeField]
         //Transform pointPrefab;
 
+        [SerializeField]
+	    ComputeShader computeShader;
+
+        [SerializeField]
+        Material material;
+
+        [SerializeField]
+        Mesh mesh;
+
+        static readonly int
+            positionsId = Shader.PropertyToID("_Positions"),
+            resolutionId = Shader.PropertyToID("_Resolution"),
+            stepId = Shader.PropertyToID("_Step"),
+            timeId = Shader.PropertyToID("_Time");
+
         ComputeBuffer positionsBuffer;
 
         // Number of cubes to create
@@ -73,6 +88,20 @@ namespace ComputeShaders
             positionsBuffer = null;
         }
 
+        void UpdateFunctionOnGPU () {
+            float step = 2f / resolution;
+            computeShader.SetInt(resolutionId, resolution);
+            computeShader.SetFloat(stepId, step);
+            computeShader.SetFloat(timeId, Time.time);
+
+            computeShader.SetBuffer(0, positionsId, positionsBuffer);
+		
+		    int groups = Mathf.CeilToInt(resolution / 8f);
+		    computeShader.Dispatch(0, groups, groups, 1);
+
+            Graphics.DrawMeshInstancedProcedural(mesh, 0, material);
+        }
+
         // On the object updating
         void Update () {
             duration += Time.deltaTime;
@@ -91,6 +120,7 @@ namespace ComputeShaders
                 PickNextFunction();
             }
 
+            UpdateFunctionOnGPU();
             /*if (transitioning) {
                 UpdateFunctionTransition();
             }
